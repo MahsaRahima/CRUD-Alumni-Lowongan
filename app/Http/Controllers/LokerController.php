@@ -12,11 +12,16 @@ class LokerController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index() {
+    //     return view('listings.index', [
+    //         'listings' => Loker::latest()->filter(request(['Tags', 'search']))->paginate(6)
+    //     ]);
+    // }
     public function index() {
-        return view('listings.index', [
-            'listings' => Loker::latest()->filter(request(['Tags', 'search']))->paginate(6)
-        ]);
+        $listings = Loker::latest()->filter(request(['Tags', 'search']))->paginate(6);
+        return view('listings.index', compact('listings'));
     }
+    
 
     // Show single listing
     public function show(Loker $id) {
@@ -108,4 +113,5 @@ class LokerController extends Controller
     public function manage() {
         return view('listings.manage', ['listings' =>Loker::all()]);
     }
+    
 }

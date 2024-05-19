@@ -13,10 +13,10 @@ class LogangController extends Controller
      * Display a listingmagang of the resource.
      */
     public function index() {
-        return view('listingmagang.index', [
-            'listingmagang' => Logang::latest()->filter(request(['Tags', 'search']))->paginate(6)
-        ]);
-    }
+
+        $listingmagang = Logang::latest()->filter(request(['Tags', 'search']))->paginate(6);
+        return view('listingmagang.index', compact('listingmagang') );
+      }
 
     // Show single listingmagang
     public function show(Logang $id) {
