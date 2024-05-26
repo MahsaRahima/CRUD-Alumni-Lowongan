@@ -1,7 +1,4 @@
-<x-layout>
-  
-  {{-- @include('partials._hero') --}}
-  
+<x-layout> 
   <div class="mb-6 ml-5">
     <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
       <a href="/" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
