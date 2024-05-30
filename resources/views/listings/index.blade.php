@@ -56,7 +56,7 @@
           </div>
           <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
               @foreach ([
-                  'Freelance', 'Full Time', 'Magang', 'Kontrak', 'Sementara'
+                  'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
               ] as $tipeKerja)
                   <label class="flex items-center mb-2">
                       <input type="checkbox" class="mr-2" name="TipeKerja[]" value="{{ $tipeKerja }}" 

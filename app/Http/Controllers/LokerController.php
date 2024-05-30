@@ -33,7 +33,7 @@ class LokerController extends Controller
         $availableTipeKerja = Loker::select('TipeKerja')
             ->distinct()
             ->whereIn('TipeKerja', [
-                'Freelance', 'Full Time', 'Magang', 'Kontrak', 'Sementara'
+                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
             ])
             ->pluck('TipeKerja')
             ->toArray();
