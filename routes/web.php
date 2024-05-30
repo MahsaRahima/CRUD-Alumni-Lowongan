@@ -31,7 +31,7 @@ Route::delete('/loker/{id}/delete', [LokerController::class,'destroy']);
 Route::get('/manageLoker', [LokerController::class,'manage'])->name('manage.view');
 
 //route Logang
-Route::get('/logang',[LogangController::class, 'index'])->name('listingmagang.index');
+Route::get('/logang', [LogangController::class, 'index'])->name('listingmagang.index');
 Route::get('/postLogang',[LogangController::class,'create']);
 Route::post('/storelogang',[LogangController::class, 'store']);
 Route::get('/logang/{id}', [LogangController::class,'show']);

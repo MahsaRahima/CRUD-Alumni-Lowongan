@@ -18,7 +18,14 @@ class LogangController extends Controller
         $selectedTipeMagang = request('TipeMagang', []);
 
         // Fetch listingmagang based on selected filters
-        $listingmagang = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeMagang']))->paginate(6);
+        $listingmagang = Logang::latest()
+            ->when($selectedPengalaman, function ($query, $selectedPengalaman) {
+                return $query->whereIn('Pengalaman', $selectedPengalaman);
+            })
+            ->when($selectedTipeMagang, function ($query, $selectedTipeMagang) {
+                return $query->whereIn('TipeMagang', $selectedTipeMagang);
+            })
+            ->paginate(6);
 
         // Determine the availability of each filter option
         $availablePengalaman = Logang::select('Pengalaman')
@@ -40,6 +47,7 @@ class LogangController extends Controller
 
         return view('listingmagang.index', compact('listingmagang', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
     }
+
 
     // Show single listingmagang
     public function show(Logang $id) {
