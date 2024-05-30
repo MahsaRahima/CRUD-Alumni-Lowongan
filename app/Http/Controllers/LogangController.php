@@ -89,7 +89,7 @@ class LogangController extends Controller
 
         ]);
 
-        return redirect()->route('manage.view')->with('success', 'lowongan updated successfully');
+        return redirect()->route('manageLogang.view')->with('success', 'lowongan updated successfully');
     }
 
     /**
@@ -101,7 +101,7 @@ class LogangController extends Controller
         if ($logang){
             $logang->delete();
         }
-        return redirect()->route('manage.view')->with('success', 'Lowongan deleted successfully');
+        return redirect()->route('manageLogang.view')->with('success', 'Lowongan deleted successfully');
     }
 
     // Manage Listingmagang

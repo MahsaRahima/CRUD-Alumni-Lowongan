@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 
 //route Loker
-Route::get('/loker',[LokerController::class, 'index']);
+Route::get('/loker',[LokerController::class, 'index'])->name('listings.index');
 Route::get('/postLoker',[LokerController::class,'create']);
 Route::post('/storeloker',[LokerController::class, 'store']);
 Route::get('/loker/{id}', [LokerController::class,'show']);
@@ -31,11 +31,11 @@ Route::delete('/loker/{id}/delete', [LokerController::class,'destroy']);
 Route::get('/manageLoker', [LokerController::class,'manage'])->name('manage.view');
 
 //route Logang
-Route::get('/logang',[LogangController::class, 'index']);
+Route::get('/logang',[LogangController::class, 'index'])->name('listingmagang.index');
 Route::get('/postLogang',[LogangController::class,'create']);
 Route::post('/storelogang',[LogangController::class, 'store']);
 Route::get('/logang/{id}', [LogangController::class,'show']);
 Route::get('/logang/{id}/edit', [LogangController::class,'edit']);
 Route::put('/logang/{id}/update', [LogangController::class,'update']);
 Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
-Route::get('/manageLogang', [LogangController::class,'manage'])->name('manage.view');
+Route::get('/manageLogang', [LogangController::class,'manage'])->name('manageLogang.view');

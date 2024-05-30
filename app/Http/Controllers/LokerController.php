@@ -12,14 +12,33 @@ class LokerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index() {
-    //     return view('listings.index', [
-    //         'listings' => Loker::latest()->filter(request(['Tags', 'search']))->paginate(6)
-    //     ]);
-    // }
-    public function index() {
-        $listings = Loker::latest()->filter(request(['Tags', 'search']))->paginate(6);
-        return view('listings.index', compact('listings'));
+    public function index(){
+        // Get selected filters
+        $selectedPengalaman = request('Pengalaman', []);
+        $selectedTipeKerja = request('TipeKerja', []);
+
+        // Fetch listings based on selected filters
+        $listings = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+
+        // Determine the availability of each filter option
+        $availablePengalaman = Loker::select('Pengalaman')
+            ->distinct()
+            ->whereIn('Pengalaman', [
+                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
+                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
+            ])
+            ->pluck('Pengalaman')
+            ->toArray();
+
+        $availableTipeKerja = Loker::select('TipeKerja')
+            ->distinct()
+            ->whereIn('TipeKerja', [
+                'Freelance', 'Full Time', 'Magang', 'Kontrak', 'Sementara'
+            ])
+            ->pluck('TipeKerja')
+            ->toArray();
+
+        return view('listings.index', compact('listings', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
     
 
